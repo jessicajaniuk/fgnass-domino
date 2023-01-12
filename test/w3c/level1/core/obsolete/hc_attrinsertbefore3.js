@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_attrinsertbefore3";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_attrinsertbefore3';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -83,64 +77,59 @@ the attribute is changed.
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core#ID-952280727
 */
 function hc_attrinsertbefore3() {
-   var success;
-    if(checkInitialization(builder, "hc_attrinsertbefore3") != null) return;
-    var doc;
-      var acronymList;
-      var testNode;
-      var attributes;
-      var titleAttr;
-      var value;
-      var terNode;
-      var dayNode;
-      var docFrag;
-      var retval;
-      var firstChild;
-      var lastChild;
-      var refChild = null;
+  var success;
+  if (checkInitialization(builder, 'hc_attrinsertbefore3') != null) return;
+  var doc;
+  var acronymList;
+  var testNode;
+  var attributes;
+  var titleAttr;
+  var value;
+  var terNode;
+  var dayNode;
+  var docFrag;
+  var retval;
+  var firstChild;
+  var lastChild;
+  var refChild = null;
 
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "hc_staff");
-      acronymList = doc.getElementsByTagName("acronym");
-      testNode = acronymList.item(3);
-      attributes = testNode.attributes;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  acronymList = doc.getElementsByTagName('acronym');
+  testNode = acronymList.item(3);
+  attributes = testNode.attributes;
 
-      titleAttr = attributes.getNamedItem("title");
-      terNode = doc.createTextNode("ter");
-      dayNode = doc.createTextNode("day");
-      docFrag = doc.createDocumentFragment();
-      retval = docFrag.appendChild(terNode);
-      retval = docFrag.appendChild(dayNode);
-      retval = titleAttr.insertBefore(docFrag,refChild);
-      value = titleAttr.value;
+  titleAttr = attributes.getNamedItem('title');
+  terNode = doc.createTextNode('ter');
+  dayNode = doc.createTextNode('day');
+  docFrag = doc.createDocumentFragment();
+  retval = docFrag.appendChild(terNode);
+  retval = docFrag.appendChild(dayNode);
+  retval = titleAttr.insertBefore(docFrag, refChild);
+  value = titleAttr.value;
 
-      assertEquals("attrValue","Yesterday",value);
-       value = titleAttr.nodeValue;
+  assertEquals('attrValue', 'Yesterday', value);
+  value = titleAttr.nodeValue;
 
-      assertEquals("attrNodeValue","Yesterday",value);
-       value = retval.nodeValue;
+  assertEquals('attrNodeValue', 'Yesterday', value);
+  value = retval.nodeValue;
 
-      assertNull("retvalValue",value);
-    firstChild = titleAttr.firstChild;
+  assertNull('retvalValue', value);
+  firstChild = titleAttr.firstChild;
 
-      value = firstChild.nodeValue;
+  value = firstChild.nodeValue;
 
-      assertEquals("firstChildValue","Yes",value);
-       lastChild = titleAttr.lastChild;
+  assertEquals('firstChildValue', 'Yes', value);
+  lastChild = titleAttr.lastChild;
 
-      value = lastChild.nodeValue;
+  value = lastChild.nodeValue;
 
-      assertEquals("lastChildValue","day",value);
-       
+  assertEquals('lastChildValue', 'day', value);
 }
 
-
-
-
 function runTest() {
-   hc_attrinsertbefore3();
+  hc_attrinsertbefore3();
 }

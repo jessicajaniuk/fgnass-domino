@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/html/button02";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/html/button02';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "button");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'button');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -83,33 +77,29 @@ The value of attribute name of the form element which contains this button is re
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
 */
 function button02() {
-   var success;
-    if(checkInitialization(builder, "button02") != null) return;
-    var nodeList;
-      var testNode;
-      var formNode;
-      var vfname;
-      var doc;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "button");
-      nodeList = doc.getElementsByTagName("button");
-      assertSize("Asize",2,nodeList);
-testNode = nodeList.item(0);
-      formNode = testNode.form;
+  var success;
+  if (checkInitialization(builder, 'button02') != null) return;
+  var nodeList;
+  var testNode;
+  var formNode;
+  var vfname;
+  var doc;
 
-      vfname = formNode.id;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'button');
+  nodeList = doc.getElementsByTagName('button');
+  assertSize('Asize', 2, nodeList);
+  testNode = nodeList.item(0);
+  formNode = testNode.form;
 
-      assertEquals("formLink","form2",vfname);
-       
+  vfname = formNode.id;
+
+  assertEquals('formLink', 'form2', vfname);
 }
 
-
-
-
 function runTest() {
-   button02();
+  button02();
 }

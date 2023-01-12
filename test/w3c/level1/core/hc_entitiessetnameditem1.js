@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_entitiessetnameditem1";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_entitiessetnameditem1';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,46 +30,43 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
-       checkFeature("XML", null);
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
+    checkFeature('XML', null);
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -84,61 +78,48 @@ result in a NO_MODIFICATION_ERR or HIERARCHY_REQUEST_ERR.
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core#ID-1025163788
 */
 function hc_entitiessetnameditem1() {
-   var success;
-    if(checkInitialization(builder, "hc_entitiessetnameditem1") != null) return;
-    var doc;
-      var entities;
-      var docType;
-      var retval;
-      var elem;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "hc_staff");
-      docType = doc.doctype;
+  var success;
+  if (checkInitialization(builder, 'hc_entitiessetnameditem1') != null) return;
+  var doc;
+  var entities;
+  var docType;
+  var retval;
+  var elem;
 
-      
-	if(
-	
-	!(
-	(builder.contentType == "text/html")
-)
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  docType = doc.doctype;
 
-	) {
-	assertNotNull("docTypeNotNull",docType);
-entities = docType.entities;
+  if (!(builder.contentType == 'text/html')) {
+    assertNotNull('docTypeNotNull', docType);
+    entities = docType.entities;
 
-      assertNotNull("entitiesNotNull",entities);
-elem = doc.createElement("br");
-      
-      try {
+    assertNotNull('entitiesNotNull', entities);
+    elem = doc.createElement('br');
+
+    try {
       retval = entities.setNamedItem(elem);
-      fail("throw_HIER_OR_NO_MOD_ERR");
-     
-      } catch (ex) {
-		  if (typeof(ex.code) != 'undefined') {      
-       switch(ex.code) {
-       case /* HIERARCHY_REQUEST_ERR */ 3 :
-       break;
-      case /* NO_MODIFICATION_ALLOWED_ERR */ 7 :
-       break;
+      fail('throw_HIER_OR_NO_MOD_ERR');
+    } catch (ex) {
+      if (typeof ex.code != 'undefined') {
+        switch (ex.code) {
+          case /* HIERARCHY_REQUEST_ERR */ 3:
+            break;
+          case /* NO_MODIFICATION_ALLOWED_ERR */ 7:
+            break;
           default:
-          throw ex;
-          }
-       } else { 
-       throw ex;
+            throw ex;
         }
-         }
-        
-	}
-	
+      } else {
+        throw ex;
+      }
+    }
+  }
 }
 
-
-
-
 function runTest() {
-   hc_entitiessetnameditem1();
+  hc_entitiessetnameditem1();
 }

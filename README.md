@@ -18,12 +18,10 @@ Domino sticks to [DOM level 4](http://dvcs.w3.org/hg/domcore/raw-file/tip/Overvi
 
 <b>Note that</b> because domino does not use proxies,
 `Element.attributes` is not a true JavaScript array; it is an object
-with a `length` property and an `item(n)` accessor method.  See
+with a `length` property and an `item(n)` accessor method. See
 [github issue #27](https://github.com/fgnass/domino/issues/27) for
-further discussion.  It does however implement direct indexed accessors
+further discussion. It does however implement direct indexed accessors
 (`element.attributes[i]`) and is live.
-
-
 
 ## CSS Selector Support
 
@@ -34,7 +32,7 @@ Domino provides support for `querySelector()`, `querySelectorAll()`, and `matche
 Domino represents the DOM tree structure in the same way Webkit and
 other browser-based implementations do: as a linked list of children
 which is converted to an array-based representation iff the
-`Node#childNodes` accessor is used.  You will get the best performance
+`Node#childNodes` accessor is used. You will get the best performance
 from tree modification code (inserting and removing children) if you
 avoid the use of `Node#childNodes` and traverse the tree using
 `Node#firstChild`/`Node#nextSibling` (or
@@ -43,12 +41,13 @@ avoid the use of `Node#childNodes` and traverse the tree using
 ## Usage
 
 Domino supports the DOM level 4 API, and thus API documentation can be
-found on standard reference sites.  For example, you could start from
+found on standard reference sites. For example, you could start from
 MDN's documentation for
 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) and
 [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node).
 
 The only exception is the initial creation of a document:
+
 ```javascript
 var domino = require('domino');
 var Element = domino.impl.Element; // etc
@@ -65,23 +64,26 @@ console.log(h1 instanceof Element);
 
 There is also an incremental parser available, if you need to interleave
 parsing with other processing:
+
 ```javascript
 var domino = require('domino');
 
-var pauseAfter = function(ms) {
+var pauseAfter = function (ms) {
   var start = Date.now();
-  return function() { return (Date.now() - start) >= ms; };
+  return function () {
+    return Date.now() - start >= ms;
+  };
 };
 
 var incrParser = domino.createIncrementalHTMLParser();
 incrParser.write('<p>hello<');
 incrParser.write('b>&am');
-incrParser.process(pauseAfter(1/*ms*/)); // can interleave processing
+incrParser.process(pauseAfter(1 /*ms*/)); // can interleave processing
 incrParser.write('p;');
 // ...etc...
 incrParser.end(); // when done writing the document
 
-while (incrParser.process(pauseAfter(10/*ms*/))) {
+while (incrParser.process(pauseAfter(10 /*ms*/))) {
   // ...do other housekeeping...
 }
 
@@ -90,6 +92,7 @@ console.log(incrParser.document().outerHTML);
 
 If you want a more standards-compliant way to create a `Document`, you can
 also use [DOMImplementation](https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation):
+
 ```javascript
 var domino = require('domino');
 var domimpl = domino.createDOMImplementation();
@@ -97,8 +100,9 @@ var doc = domimpl.createHTMLDocument();
 ```
 
 By default many domino methods will be stored in writable properties, to
-allow polyfills (as browsers do).  You can lock down the implementation
+allow polyfills (as browsers do). You can lock down the implementation
 if desired as follows:
+
 ```javascript
 global.__domino_frozen__ = true; // Must precede any `require('domino')`
 var domino = require('domino');
@@ -121,7 +125,7 @@ The majority of the code was originally written by [Andreas Gal](https://github.
 it into a stand-alone npm package.
 
 The code has been maintained since 2013 by [C. Scott Ananian](https://github.com/cscott/) on behalf of the Wikimedia Foundation, which uses it in its
-[Parsoid](https://www.mediawiki.org/wiki/Parsoid) project.  A large number
+[Parsoid](https://www.mediawiki.org/wiki/Parsoid) project. A large number
 of improvements have been made, mostly focusing on correctness,
 performance, and (to a lesser extent) completeness of the implementation.
 

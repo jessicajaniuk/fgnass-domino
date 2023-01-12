@@ -2,7 +2,7 @@ var suite = require('./harness');
 
 exports.level1 = {
   core: suite('level1/core/'),
-  html: suite('level1/html/')
+  html: suite('level1/html/'),
 };
 /*
 exports.level2 = {

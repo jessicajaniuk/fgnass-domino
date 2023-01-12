@@ -1,9 +1,6 @@
 {
   "-- web-platform-tests/html/dom --": "-------------------------------------",
-  "html/dom/historical.html": [
-    "document.all cannot find applet",
-    "applet is not styled"
-  ],
+  "html/dom/historical.html": ["document.all cannot find applet", "applet is not styled"],
   "html/dom/reflection-embedded.html": [
     "img.decoding: typeof IDL attribute",
     "img.decoding: IDL get with DOM attribute unset",
@@ -2124,9 +2121,7 @@
     "document.forms getOwnPropertyNames",
     "Document.forms should be a live collection"
   ],
-  "html/dom/documents/dom-tree-accessors/document.head-01.html": [
-    "document.head"
-  ],
+  "html/dom/documents/dom-tree-accessors/document.head-01.html": ["document.head"],
   "html/dom/documents/dom-tree-accessors/document.images.html": [
     "document.images should contain all HTML img elements",
     "img with id",
@@ -2641,9 +2636,7 @@
     "createDocument test: null,\"\",DocumentType node <!DOCTYPE math -//W3C//DTD MathML 2.0//EN http://www.w3.org/Math/DTD/mathml2/mathml2.dtd>",
     "createDocument with missing arguments"
   ],
-  "dom/nodes/DOMImplementation-createHTMLDocument.html": [
-    "createHTMLDocument(): URL parsing"
-  ],
+  "dom/nodes/DOMImplementation-createHTMLDocument.html": ["createHTMLDocument(): URL parsing"],
   "dom/nodes/DOMImplementation-hasFeature.html": [
     "hasFeature()",
     "hasFeature(\"org.w3c.svg\")",
@@ -2763,18 +2756,13 @@
     "hasFeature(\"org.w3c.dom.svg\", \"1.1\")",
     "hasFeature(\"http://www.w3.org/TR/SVG11/feature#Script\", \"7.5\")"
   ],
-  "dom/nodes/Document-URL.html": [
-    "Document.URL with redirect"
-  ],
+  "dom/nodes/Document-URL.html": ["Document.URL with redirect"],
   "dom/nodes/Document-constructor.html": [
     "new Document(): interfaces",
     "new Document(): metadata",
     "new Document(): URL parsing"
   ],
-  "dom/nodes/Document-createComment.html": [
-    "createComment(null)",
-    "createComment(undefined)"
-  ],
+  "dom/nodes/Document-createComment.html": ["createComment(null)", "createComment(undefined)"],
   "dom/nodes/Document-createElement-namespace.html": [
     "Created element's namespace in created HTML document by DOMParser ('text/html')",
     "Created element's namespace in created XML document by DOMParser ('text/xml')",
@@ -2965,10 +2953,7 @@
     "Uncaught: Unexpected token <",
     "Uncaught: Unexpected token '<'"
   ],
-  "dom/nodes/Element-children.html": [
-    "HTMLCollection edge cases",
-    "HTMLCollection edge cases 1"
-  ],
+  "dom/nodes/Element-children.html": ["HTMLCollection edge cases", "HTMLCollection edge cases 1"],
   "dom/nodes/Element-classlist.html": [
     "classList.remove(\"a\") with attribute value null (HTML node)",
     "classList.remove(\"a\", \"b\") with attribute value null (HTML node)",
@@ -4374,10 +4359,7 @@
     "xmlDoctype.compareDocumentPosition(foreignDocfrag)",
     "xmlDoctype.compareDocumentPosition(xmlDocfrag)"
   ],
-  "dom/nodes/Node-isConnected.html": [
-    "Test with ordinary child nodes",
-    "Test with iframes"
-  ],
+  "dom/nodes/Node-isConnected.html": ["Test with ordinary child nodes", "Test with iframes"],
   "dom/nodes/Node-lookupPrefix.xhtml": [
     "Node.lookupPrefix",
     "Node.lookupPrefix 5",
@@ -4391,9 +4373,7 @@
   "dom/nodes/Node-nodeName-xhtml.xhtml": [
     "For Element nodes, nodeName should return the same as tagName."
   ],
-  "dom/nodes/Node-normalize.html": [
-    "Non-text nodes with empty textContent values."
-  ],
+  "dom/nodes/Node-normalize.html": ["Non-text nodes with empty textContent values."],
   "dom/nodes/NodeList-Iterable.html": [
     "NodeList has values method.",
     "NodeList has entries method.",
@@ -4418,9 +4398,7 @@
     "DocumentFrgment.append() with null as an argument, on a parent having a child.",
     "DocumentFrgment.append() with one element and text as argument, on a parent having a child."
   ],
-  "dom/nodes/ParentNode-children.html": [
-    "ParentNode.children should be a live collection"
-  ],
+  "dom/nodes/ParentNode-children.html": ["ParentNode.children should be a live collection"],
   "dom/nodes/ParentNode-prepend.html": [
     "Element.prepend() without any argument, on a parent having no child.",
     "Element.prepend() with null as an argument, on a parent having no child.",
@@ -4441,12 +4419,8 @@
     "Uncaught: Unexpected token <",
     "Uncaught: Unexpected token '<'"
   ],
-  "dom/nodes/ProcessingInstruction-literal-1.xhtml": [
-    "<?xml?> is not a ProcessingInstruction"
-  ],
-  "dom/nodes/ProcessingInstruction-literal-2.xhtml": [
-    "ProcessingInstruction literals"
-  ],
+  "dom/nodes/ProcessingInstruction-literal-1.xhtml": ["<?xml?> is not a ProcessingInstruction"],
+  "dom/nodes/ProcessingInstruction-literal-2.xhtml": ["ProcessingInstruction literals"],
   "dom/nodes/Text-constructor.html": [
     "new Text(): prototype chain",
     "new Text(): no arguments",
@@ -4495,9 +4469,7 @@
     "Document.prepend() with text as an argument, on a Document having no child.",
     "Document.prepend() with two elements as the argument, on a Document having no child."
   ],
-  "dom/nodes/query-target-in-load-event.part.html": [
-    "Uncaught: window.location is not supported."
-  ],
+  "dom/nodes/query-target-in-load-event.part.html": ["Uncaught: window.location is not supported."],
   "dom/nodes/remove-unscopable.html": [
     "before() should be unscopable",
     "after() should be unscopable",
@@ -4682,7 +4654,5 @@
     "Uncaught: Unexpected token <",
     "Uncaught: Unexpected token '<'"
   ],
-  "domparsing/xmldomparser.html": [
-    "XML Dom Parse readyState Test"
-  ]
+  "domparsing/xmldomparser.html": ["XML Dom Parse readyState Test"]
 }

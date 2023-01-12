@@ -1,79 +1,112 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
-<TITLE>NIST DOM HTML Test - SELECT</TITLE>
-</HEAD>
-<BODY onload="parent.loadComplete()">
-<TABLE ID="table-1" BORDER="4" FRAME="border" CELLPADDING="2" CELLSPACING="2" SUMMARY="HTML Control Table" RULES="all">
-<CAPTION>Table Caption</CAPTION>
-<THEAD ALIGN="center" VALIGN="middle">
-<TR ALIGN="center" VALIGN="middle" CHAR="*" CHAROFF="1">
-<TH ID="header-1">Employee Id</TH>
-<TH ID="header-2" ABBR="maiden" AXIS="center" ALIGN="center" COLSPAN="1" ROWSPAN="1" SCOPE="col" HEADERS="header-1" VALIGN="middle">Employee Name</TH>
-<TH>Position</TH>
-<TH>Salary</TH>
-<TH>Gender</TH>
-<TH>Address</TH>
-</TR>
-</THEAD>
-<TFOOT ALIGN="center" VALIGN="middle">
-<TR>
-<TH>next page ...</TH>
-<TH>next page ...</TH>
-<TH>next page ...</TH>
-<TH>next page ...</TH>
-<TH>next page ...</TH>
-<TH>next page ...</TH>
-</TR>
-</TFOOT>
-<TBODY ALIGN="center" VALIGN="middle">
-<TR>
-<TD AXIS="center" ID="Table-3" ABBR="maiden2" COLSPAN="1" ROWSPAN="1" SCOPE="col" HEADERS="header-2" VALIGN="middle">EMP0001</TD>
-<TD HEADERS="header-2">Margaret Martin</TD>
-<TD>Accountant</TD>
-<TD>56,000</TD>
-<TD>Female</TD>
-<TD>1230 North Ave. Dallas, Texas 98551</TD>
-</TR>
-<TR>
-<TD>EMP0002</TD>
-<TD>Martha Raynolds</TD>
-<TD>Secretary</TD>
-<TD>35,000</TD>
-<TD>Female</TD>
-<TD>1900 Dallas Road Dallas, Texas 98554</TD>
-</TR>
-</TBODY>
-</TABLE>
-<FORM ID="form1" ACTION="./files/getData.pl" METHOD="post">
-<P>
-<SELECT ID="selectId" DIR="ltr" TABINDEX="7" NAME="select1" MULTIPLE="multiple" SIZE="1">
-<OPTION SELECTED="selected" value="EMP1">EMP10001</OPTION>
-<OPTION>EMP10002</OPTION>
-<OPTION>EMP10003</OPTION>
-<OPTION>EMP10004</OPTION>
-<OPTION>EMP10005</OPTION>
-</SELECT>
-</P>
-</FORM>
-<P>
-<SELECT NAME="select2">
-<OPTION>EMP20001</OPTION>
-<OPTION>EMP20002</OPTION>
-<OPTION>EMP20003</OPTION>
-<OPTION>EMP20004</OPTION>
-<OPTION>EMP20005</OPTION>
-</SELECT>
-</P>
-<P>
-<SELECT NAME="select3" DISABLED="disabled" TABINDEX="1">
-<OPTION>EMP30001</OPTION>
-<OPTION>EMP30002</OPTION>
-<OPTION>EMP30003</OPTION>
-<OPTION>EMP30004</OPTION>
-<OPTION>EMP30005</OPTION>
-</SELECT>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; CHARSET=utf-8" />
+    <title>NIST DOM HTML Test - SELECT</title>
+  </head>
+  <body onload="parent.loadComplete()">
+    <table
+      id="table-1"
+      border="4"
+      frame="border"
+      cellpadding="2"
+      cellspacing="2"
+      summary="HTML Control Table"
+      rules="all"
+    >
+      <caption>
+        Table Caption
+      </caption>
+      <thead align="center" valign="middle">
+        <tr align="center" valign="middle" char="*" charoff="1">
+          <th id="header-1">Employee Id</th>
+          <th
+            id="header-2"
+            abbr="maiden"
+            axis="center"
+            align="center"
+            colspan="1"
+            rowspan="1"
+            scope="col"
+            headers="header-1"
+            valign="middle"
+          >
+            Employee Name
+          </th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Gender</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tfoot align="center" valign="middle">
+        <tr>
+          <th>next page ...</th>
+          <th>next page ...</th>
+          <th>next page ...</th>
+          <th>next page ...</th>
+          <th>next page ...</th>
+          <th>next page ...</th>
+        </tr>
+      </tfoot>
+      <tbody align="center" valign="middle">
+        <tr>
+          <td
+            axis="center"
+            id="Table-3"
+            abbr="maiden2"
+            colspan="1"
+            rowspan="1"
+            scope="col"
+            headers="header-2"
+            valign="middle"
+          >
+            EMP0001
+          </td>
+          <td headers="header-2">Margaret Martin</td>
+          <td>Accountant</td>
+          <td>56,000</td>
+          <td>Female</td>
+          <td>1230 North Ave. Dallas, Texas 98551</td>
+        </tr>
+        <tr>
+          <td>EMP0002</td>
+          <td>Martha Raynolds</td>
+          <td>Secretary</td>
+          <td>35,000</td>
+          <td>Female</td>
+          <td>1900 Dallas Road Dallas, Texas 98554</td>
+        </tr>
+      </tbody>
+    </table>
+    <form id="form1" action="./files/getData.pl" method="post">
+      <p>
+        <select id="selectId" dir="ltr" tabindex="7" name="select1" multiple="multiple" size="1">
+          <option selected="selected" value="EMP1">EMP10001</option>
+          <option>EMP10002</option>
+          <option>EMP10003</option>
+          <option>EMP10004</option>
+          <option>EMP10005</option>
+        </select>
+      </p>
+    </form>
+    <p>
+      <select name="select2">
+        <option>EMP20001</option>
+        <option>EMP20002</option>
+        <option>EMP20003</option>
+        <option>EMP20004</option>
+        <option>EMP20005</option>
+      </select>
+    </p>
+    <p>
+      <select name="select3" disabled="disabled" tabindex="1">
+        <option>EMP30001</option>
+        <option>EMP30002</option>
+        <option>EMP30003</option>
+        <option>EMP30004</option>
+        <option>EMP30005</option>
+      </select>
+    </p>
+  </body>
+</html>

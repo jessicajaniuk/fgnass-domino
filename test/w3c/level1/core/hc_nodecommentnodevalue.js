@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_nodecommentnodevalue";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_nodecommentnodevalue';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -88,46 +82,37 @@ function loadComplete() {
 * @see http://www.w3.org/Bugs/Public/show_bug.cgi?id=248
 */
 function hc_nodecommentnodevalue() {
-   var success;
-    if(checkInitialization(builder, "hc_nodecommentnodevalue") != null) return;
-    var doc;
-      var elementList;
-      var commentNode;
-      var commentName;
-      var commentValue;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "hc_staff");
-      elementList = doc.childNodes;
+  var success;
+  if (checkInitialization(builder, 'hc_nodecommentnodevalue') != null) return;
+  var doc;
+  var elementList;
+  var commentNode;
+  var commentName;
+  var commentValue;
 
-      for(var indexN10040 = 0;indexN10040 < elementList.length; indexN10040++) {
-      commentNode = elementList.item(indexN10040);
-      commentName = commentNode.nodeName;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  elementList = doc.childNodes;
 
-      
-	if(
-	("#comment" == commentName)
-	) {
-	commentValue = commentNode.nodeValue;
+  for (var indexN10040 = 0; indexN10040 < elementList.length; indexN10040++) {
+    commentNode = elementList.item(indexN10040);
+    commentName = commentNode.nodeName;
 
-      assertEquals("value"," This is comment number 1.",commentValue);
-       
-	}
-	
-	}
-   commentNode = doc.createComment(" This is a comment");
+    if ('#comment' == commentName) {
       commentValue = commentNode.nodeValue;
 
-      assertEquals("createdCommentNodeValue"," This is a comment",commentValue);
-       
+      assertEquals('value', ' This is comment number 1.', commentValue);
+    }
+  }
+  commentNode = doc.createComment(' This is a comment');
+  commentValue = commentNode.nodeValue;
+
+  assertEquals('createdCommentNodeValue', ' This is a comment', commentValue);
 }
 
-
-
-
 function runTest() {
-   hc_nodecommentnodevalue();
+  hc_nodecommentnodevalue();
 }

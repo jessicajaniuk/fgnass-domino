@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_noderemovechildnode";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_noderemovechildnode';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -88,73 +82,60 @@ function loadComplete() {
 * @see http://www.w3.org/Bugs/Public/show_bug.cgi?id=246
 */
 function hc_noderemovechildnode() {
-   var success;
-    if(checkInitialization(builder, "hc_noderemovechildnode") != null) return;
-    var doc;
-      var elementList;
-      var emList;
-      var employeeNode;
-      var childList;
-      var oldChild;
-      var child;
-      var childName;
-      var length;
-      var removedChild;
-      var removedName;
-      var nodeType;
-      expected = new Array();
-      expected[0] = "strong";
-      expected[1] = "code";
-      expected[2] = "sup";
-      expected[3] = "var";
-      expected[4] = "acronym";
+  var success;
+  if (checkInitialization(builder, 'hc_noderemovechildnode') != null) return;
+  var doc;
+  var elementList;
+  var emList;
+  var employeeNode;
+  var childList;
+  var oldChild;
+  var child;
+  var childName;
+  var length;
+  var removedChild;
+  var removedName;
+  var nodeType;
+  expected = new Array();
+  expected[0] = 'strong';
+  expected[1] = 'code';
+  expected[2] = 'sup';
+  expected[3] = 'var';
+  expected[4] = 'acronym';
 
-      var actual = new Array();
+  var actual = new Array();
 
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "hc_staff");
-      elementList = doc.getElementsByTagName("p");
-      employeeNode = elementList.item(1);
-      childList = employeeNode.childNodes;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  elementList = doc.getElementsByTagName('p');
+  employeeNode = elementList.item(1);
+  childList = employeeNode.childNodes;
 
-      emList = employeeNode.getElementsByTagName("em");
-      oldChild = emList.item(0);
-      removedChild = employeeNode.removeChild(oldChild);
-      removedName = removedChild.nodeName;
+  emList = employeeNode.getElementsByTagName('em');
+  oldChild = emList.item(0);
+  removedChild = employeeNode.removeChild(oldChild);
+  removedName = removedChild.nodeName;
 
-      assertEqualsAutoCase("element", "removedName","em",removedName);
-       for(var indexN10098 = 0;indexN10098 < childList.length; indexN10098++) {
-      child = childList.item(indexN10098);
-      nodeType = child.nodeType;
+  assertEqualsAutoCase('element', 'removedName', 'em', removedName);
+  for (var indexN10098 = 0; indexN10098 < childList.length; indexN10098++) {
+    child = childList.item(indexN10098);
+    nodeType = child.nodeType;
 
-      childName = child.nodeName;
+    childName = child.nodeName;
 
-      
-	if(
-	(1 == nodeType)
-	) {
-	actual[actual.length] = childName;
-
-	}
-	
-		else {
-			assertEquals("textNodeType",3,nodeType);
-       assertEquals("textNodeName","#text",childName);
-       
-		}
-	
-	}
-   assertEqualsListAutoCase("element", "childNames",expected,actual);
-       
+    if (1 == nodeType) {
+      actual[actual.length] = childName;
+    } else {
+      assertEquals('textNodeType', 3, nodeType);
+      assertEquals('textNodeName', '#text', childName);
+    }
+  }
+  assertEqualsListAutoCase('element', 'childNames', expected, actual);
 }
 
-
-
-
 function runTest() {
-   hc_noderemovechildnode();
+  hc_noderemovechildnode();
 }

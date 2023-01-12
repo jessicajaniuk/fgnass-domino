@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium,
 (Massachusetts Institute of Technology, European Research Consortium
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/html/HTMLScriptElement05";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/html/HTMLScriptElement05';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,31 +30,29 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
+    docsLoaded = 0;
 
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "script");
-
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'script');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
-
-
 
 //
 //   This method is called on the completion of
@@ -67,11 +62,10 @@ function setUpPage() {
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 *
@@ -84,30 +78,26 @@ function loadComplete() {
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30534818
 */
 function HTMLScriptElement05() {
-   var success;
-    if(checkInitialization(builder, "HTMLScriptElement05") != null) return;
-    var nodeList;
-      var testNode;
-      var vtype;
-      var doc;
+  var success;
+  if (checkInitialization(builder, 'HTMLScriptElement05') != null) return;
+  var nodeList;
+  var testNode;
+  var vtype;
+  var doc;
 
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "script");
-      nodeList = doc.getElementsByTagName("script");
-      assertSize("Asize",1,nodeList);
-testNode = nodeList.item(0);
-      vtype = testNode.type;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'script');
+  nodeList = doc.getElementsByTagName('script');
+  assertSize('Asize', 1, nodeList);
+  testNode = nodeList.item(0);
+  vtype = testNode.type;
 
-      assertEquals("typeLink","text/javaScript",vtype);
-
+  assertEquals('typeLink', 'text/javaScript', vtype);
 }
 
-
-
-
 function runTest() {
-   HTMLScriptElement05();
+  HTMLScriptElement05();
 }

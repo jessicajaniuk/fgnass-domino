@@ -1,36 +1,81 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML>
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
-<TITLE>NIST DOM HTML Test - DOCUMENT</TITLE>
-</HEAD>
-<BODY onload="parent.loadComplete()" ID="TEST-BODY"> 
-<FORM ID="form1" ACCEPT-CHARSET="US-ASCII" ACTION="./files/getData.pl" ENCTYPE="application/x-www-form-urlencoded" METHOD="post">
-<P>
-<TEXTAREA NAME="text1" COLS="20" ROWS="7"></TEXTAREA>
-<INPUT TYPE="submit" NAME="submit" VALUE="Submit" />
-<INPUT TYPE="reset" NAME="reset" VALUE="Reset" />
-</P>
-</FORM>
-<P>
-<MAP NAME="mapid" ID="mapid">
-<AREA TABINDEX="10" ACCESSKEY="a" SHAPE="rect" ALT="Domain" COORDS="0,2,45,45" HREF="./files/dletter.html" TITLE="Domain1">
-<AREA TABINDEX="10" ACCESSKEY="a" SHAPE="rect" ALT="Domain" COORDS="0,2,45,45" HREF="./files/dletter.html" TITLE="Domain2">
-</MAP>
-</P>
-<P>
-<IMG ID="IMAGE-1" NAME="IMAGE-1" SRC="./pix/dts.gif" ALT="DTS IMAGE LOGO" LONGDESC="./files/desc.html" USEMAP="#DTS-MAP" WIDTH="115"/>
-</P>
-<P>
-<OBJECT DATA="./pix/line.gif" CODETYPE="image/gif" HEIGHT="10">
-<APPLET ALT="Applet Number 1" CODE="applet1.class"></APPLET>
-</OBJECT>
-<OBJECT DATA="./pix/logo.gif" type="image/gif">
-<APPLET ALT="Applet Number 2" CODE="applet2.class"></APPLET>
-</OBJECT>
-</P>
-<P>
-<A ID="Anchor" DIR="LTR" HREF="./pix/submit.gif" ACCESSKEY="g" TYPE="image/gif" COORDS="0,0,100,100" SHAPE="rect" REL="GLOSSARY" REV="STYLESHEET" HREFLANG="en" CHARSET="US-ASCII" TABINDEX="22" NAME="Anchor">View Submit Button</A>
-</P>
-</BODY>
-</HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; CHARSET=utf-8" />
+    <title>NIST DOM HTML Test - DOCUMENT</title>
+  </head>
+  <body onload="parent.loadComplete()" id="TEST-BODY">
+    <form
+      id="form1"
+      accept-charset="US-ASCII"
+      action="./files/getData.pl"
+      enctype="application/x-www-form-urlencoded"
+      method="post"
+    >
+      <p>
+        <textarea name="text1" cols="20" rows="7"></textarea>
+        <input type="submit" name="submit" value="Submit" />
+        <input type="reset" name="reset" value="Reset" />
+      </p>
+    </form>
+    <p>
+      <map name="mapid" id="mapid">
+        <area
+          tabindex="10"
+          accesskey="a"
+          shape="rect"
+          alt="Domain"
+          coords="0,2,45,45"
+          href="./files/dletter.html"
+          title="Domain1"
+        />
+        <area
+          tabindex="10"
+          accesskey="a"
+          shape="rect"
+          alt="Domain"
+          coords="0,2,45,45"
+          href="./files/dletter.html"
+          title="Domain2"
+        />
+      </map>
+    </p>
+    <p>
+      <img
+        id="IMAGE-1"
+        name="IMAGE-1"
+        src="./pix/dts.gif"
+        alt="DTS IMAGE LOGO"
+        longdesc="./files/desc.html"
+        usemap="#DTS-MAP"
+        width="115"
+      />
+    </p>
+    <p>
+      <object data="./pix/line.gif" codetype="image/gif" height="10">
+        <applet alt="Applet Number 1" code="applet1.class"></applet>
+      </object>
+      <object data="./pix/logo.gif" type="image/gif">
+        <applet alt="Applet Number 2" code="applet2.class"></applet>
+      </object>
+    </p>
+    <p>
+      <a
+        id="Anchor"
+        dir="LTR"
+        href="./pix/submit.gif"
+        accesskey="g"
+        type="image/gif"
+        coords="0,0,100,100"
+        shape="rect"
+        rel="GLOSSARY"
+        rev="STYLESHEET"
+        hreflang="en"
+        charset="US-ASCII"
+        tabindex="22"
+        name="Anchor"
+        >View Submit Button</a
+      >
+    </p>
+  </body>
+</html>

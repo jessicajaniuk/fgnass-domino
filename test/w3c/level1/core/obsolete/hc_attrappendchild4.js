@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_attrappendchild4";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_attrappendchild4';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,46 +30,43 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
-       checkFeature("XML", null);
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
+    checkFeature('XML', null);
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -84,69 +78,54 @@ in a HIERARCHY_REQUEST_ERR.
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core#ID-184E7107
 */
 function hc_attrappendchild4() {
-   var success;
-    if(checkInitialization(builder, "hc_attrappendchild4") != null) return;
-    var doc;
-      var acronymList;
-      var testNode;
-      var attributes;
-      var titleAttr;
-      var value;
-      var textNode;
-      var retval;
-      var lastChild;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
+  var success;
+  if (checkInitialization(builder, 'hc_attrappendchild4') != null) return;
+  var doc;
+  var acronymList;
+  var testNode;
+  var attributes;
+  var titleAttr;
+  var value;
+  var textNode;
+  var retval;
+  var lastChild;
+
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  acronymList = doc.getElementsByTagName('acronym');
+  testNode = acronymList.item(3);
+  attributes = testNode.attributes;
+
+  titleAttr = attributes.getNamedItem('title');
+
+  if (builder.contentType == 'text/html') {
+    {
+      success = false;
+      try {
+        textNode = doc.createCDATASection('terday');
+      } catch (ex) {
+        success = typeof ex.code != 'undefined' && ex.code == 9;
       }
-      doc = load(docRef, "doc", "hc_staff");
-      acronymList = doc.getElementsByTagName("acronym");
-      testNode = acronymList.item(3);
-      attributes = testNode.attributes;
+      assertTrue('throw_NOT_SUPPORTED_ERR', success);
+    }
+  } else {
+    textNode = doc.createCDATASection('terday');
 
-      titleAttr = attributes.getNamedItem("title");
-      
-	if(
-	
-	(builder.contentType == "text/html")
-
-	) {
-	
-	{
-		success = false;
-		try {
-            textNode = doc.createCDATASection("terday");
-        }
-		catch(ex) {
-      success = (typeof(ex.code) != 'undefined' && ex.code == 9);
-		}
-		assertTrue("throw_NOT_SUPPORTED_ERR",success);
-	}
-
-	}
-	
-		else {
-			textNode = doc.createCDATASection("terday");
-      
-	{
-		success = false;
-		try {
-            retval = titleAttr.appendChild(textNode);
-        }
-		catch(ex) {
-      success = (typeof(ex.code) != 'undefined' && ex.code == 3);
-		}
-		assertTrue("throw_HIERARCHY_REQUEST_ERR",success);
-	}
-
-		}
-	
+    {
+      success = false;
+      try {
+        retval = titleAttr.appendChild(textNode);
+      } catch (ex) {
+        success = typeof ex.code != 'undefined' && ex.code == 3;
+      }
+      assertTrue('throw_HIERARCHY_REQUEST_ERR', success);
+    }
+  }
 }
 
-
-
-
 function runTest() {
-   hc_attrappendchild4();
+  hc_attrappendchild4();
 }

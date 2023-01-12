@@ -14,26 +14,33 @@ var WRITE_BLACKLIST = false;
 var blacklist = {};
 try {
   blacklist = require(BLACKLIST_PATH);
-} catch(e) {
+} catch (e) {
   // We expect that you deleted the old blacklist before using WRITE_BLACKLIST
-  if (!WRITE_BLACKLIST) { throw e; }
+  if (!WRITE_BLACKLIST) {
+    throw e;
+  }
 }
 
-var escapeRegExp = function(s) {
+var escapeRegExp = function (s) {
   // Note that JSON is not a subset of JavaScript: it allows \u2028 and \u2029
   // to be embedded as literals.  Escape them in the regexp to prevent this
   // from causing a syntax error when we eval() this regexp.
-  return s.replace(/[\^\\$*+?.()|{}\[\]\/]/g, '\\$&')
-    .replace(/[\u2028\u2029]/, function(c) {
-      var cp = c.codePointAt(0).toString(16);
-      while (cp.length < 4) { cp = '0' + cp; }
-      return '\\u' + cp;
-    });
+  return s.replace(/[\^\\$*+?.()|{}\[\]\/]/g, '\\$&').replace(/[\u2028\u2029]/, function (c) {
+    var cp = c.codePointAt(0).toString(16);
+    while (cp.length < 4) {
+      cp = '0' + cp;
+    }
+    return '\\u' + cp;
+  });
 };
 
-var onBlacklist = function(shortFile) {
-  if (WRITE_BLACKLIST) { return null; }
-  if (!Array.isArray(blacklist[shortFile])) { return null; }
+var onBlacklist = function (shortFile) {
+  if (WRITE_BLACKLIST) {
+    return null;
+  }
+  if (!Array.isArray(blacklist[shortFile])) {
+    return null;
+  }
   // convert strings to huge regexp
   return new RegExp('^(' + blacklist[shortFile].map(escapeRegExp).join('|') + ')$');
 };
@@ -43,7 +50,7 @@ var onBlacklist = function(shortFile) {
 /* jshint bitwise: false */
 if (!Array.prototype.includes) {
   Object.defineProperty(Array.prototype, 'includes', {
-    value: function(searchElement, fromIndex) {
+    value: function (searchElement, fromIndex) {
       if (this === null || this === undefined) {
         throw new TypeError('"this" is null or not defined');
       }
@@ -66,13 +73,14 @@ if (!Array.prototype.includes) {
         k++;
       }
       return false;
-    }
+    },
   });
 }
 // Test suite requires Array.values() as well
 if (global.Symbol && global.Symbol.iterator && !Array.prototype.values) {
   Object.defineProperty(
-    Array.prototype, 'values',
+    Array.prototype,
+    'values',
     Object.getOwnPropertyDescriptor(Array.prototype, global.Symbol.iterator)
   );
 }
@@ -86,13 +94,12 @@ var testharness = read(__dirname + '/web-platform-tests/resources/testharness.js
 function list(base, dir, fn) {
   var result = {};
   var fulldir = Path.resolve(__dirname, '..', base, dir);
-  fs.readdirSync(fulldir).forEach(function(file) {
+  fs.readdirSync(fulldir).forEach(function (file) {
     var path = Path.join(dir, file);
     var stat = fs.statSync(Path.join(fulldir, file));
     if (stat.isDirectory()) {
       result[file] = list(base, path, fn);
-    }
-    else if (file.match(/\.x?html$/)) {
+    } else if (file.match(/\.x?html$/)) {
       var test = fn(path, Path.join(fulldir, file));
       if (test) result[file] = test;
     }
@@ -100,30 +107,42 @@ function list(base, dir, fn) {
   return result;
 }
 
-var badTestFiles = new RegExp('(' + [
-  '/html/dom/interfaces.https.html', // Uses ES6, missing .../WebIDLParser.js
-  '/dom/nodes/Document-characterSet-normalization.html',
-  '/dom/nodes/Document-contentType/contentType/contenttype_datauri_02.html',
-  '/dom/nodes/Element-getElementsByTagName-change-document-HTMLNess.html',
-  '/dom/nodes/ParentNode-querySelector-All.html',
-  '/dom/nodes/query-target-in-load-event.html',
-].map(escapeRegExp).join('|') + ')$');
+var badTestFiles = new RegExp(
+  '(' +
+    [
+      '/html/dom/interfaces.https.html', // Uses ES6, missing .../WebIDLParser.js
+      '/dom/nodes/Document-characterSet-normalization.html',
+      '/dom/nodes/Document-contentType/contentType/contenttype_datauri_02.html',
+      '/dom/nodes/Element-getElementsByTagName-change-document-HTMLNess.html',
+      '/dom/nodes/ParentNode-querySelector-All.html',
+      '/dom/nodes/query-target-in-load-event.html',
+    ]
+      .map(escapeRegExp)
+      .join('|') +
+    ')$'
+);
 
-var forceSyncTestFiles = new RegExp('(' + [
-  '/dom/nodes/Node-parentNode.html',
-  '/html/dom/documents/dom-tree-accessors/Document.currentScript.html',
-  '/html/dom/self-origin.sub.html',
-  '/dom/nodes/Node-isEqualNode-xhtml.xhtml',
-].map(escapeRegExp).join('|') + ')$');
+var forceSyncTestFiles = new RegExp(
+  '(' +
+    [
+      '/dom/nodes/Node-parentNode.html',
+      '/html/dom/documents/dom-tree-accessors/Document.currentScript.html',
+      '/html/dom/self-origin.sub.html',
+      '/dom/nodes/Node-isEqualNode-xhtml.xhtml',
+    ]
+      .map(escapeRegExp)
+      .join('|') +
+    ')$'
+);
 
-var harness = function() {
+var harness = function () {
   var paths = Array.from(arguments);
   var harnessResult = {
     // Could add 'before' or 'after' hooks here.
   };
-  paths.forEach(function(path) {
+  paths.forEach(function (path) {
     var shortName = path.replace(/^.*?\/web-platform-tests\//, '');
-    harnessResult[shortName] = list(path, '', function(name, file) {
+    harnessResult[shortName] = list(path, '', function (name, file) {
       var shortFile = file.replace(/^.*?\/web-platform-tests\//, '');
       if (/\/html\/dom\/reflection-original.html$/.test(file)) {
         // This is a compilation file & not a test suite.
@@ -136,11 +155,11 @@ var harness = function() {
       }
       var html = read(file);
       var window = domino.createWindow(html, 'http://example.com/');
-      Array.from(window.document.getElementsByTagName('iframe')).forEach(function(iframe) {
+      Array.from(window.document.getElementsByTagName('iframe')).forEach(function (iframe) {
         if (iframe.src === 'http://example.com/common/dummy.xml') {
-          var dummyXmlDoc = domino.createDOMImplementation().createDocument(
-            'http://www.w3.org/1999/xhtml', 'html', null
-          );
+          var dummyXmlDoc = domino
+            .createDOMImplementation()
+            .createDocument('http://www.w3.org/1999/xhtml', 'html', null);
           dummyXmlDoc._contentType = 'application/xml';
           iframe._contentWindow = new Window(dummyXmlDoc);
           var foo = dummyXmlDoc.createElement('foo');
@@ -154,20 +173,16 @@ var harness = function() {
           // an XML parser.
           dummyXhtmlAsHtml.body.textContent = '';
           // Create a proper XML document, and copy the HTML contents into it
-          var dummyXhtmlDoc = domino.createDOMImplementation().createDocument(
-            'http://www.w3.org/1999/xhtml', 'html', null
-          );
+          var dummyXhtmlDoc = domino
+            .createDOMImplementation()
+            .createDocument('http://www.w3.org/1999/xhtml', 'html', null);
           dummyXhtmlDoc._contentType = 'application/xhtml+xml';
           dummyXhtmlDoc.insertBefore(
             dummyXhtmlDoc.adoptNode(dummyXhtmlAsHtml.doctype),
             dummyXhtmlDoc.documentElement
           );
-          dummyXhtmlDoc.documentElement.appendChild(
-            dummyXhtmlDoc.adoptNode(dummyXhtmlAsHtml.head)
-          );
-          dummyXhtmlDoc.documentElement.appendChild(
-            dummyXhtmlDoc.adoptNode(dummyXhtmlAsHtml.body)
-          );
+          dummyXhtmlDoc.documentElement.appendChild(dummyXhtmlDoc.adoptNode(dummyXhtmlAsHtml.head));
+          dummyXhtmlDoc.documentElement.appendChild(dummyXhtmlDoc.adoptNode(dummyXhtmlAsHtml.body));
           iframe._contentWindow = new Window(dummyXhtmlDoc);
         }
       });
@@ -175,73 +190,77 @@ var harness = function() {
       window._run('window.setup({explicit_timeout:true})');
       if (forceSyncTestFiles.test(file)) {
         window._run(
-          'async_test = function(){return {'+
+          'async_test = function(){return {' +
             'step: function() {},' +
-            'step_func_done: function() {},'+
-            'done: function() {},'+
-          '}};'
+            'step_func_done: function() {},' +
+            'done: function() {},' +
+            '}};'
         );
       }
       var scripts = window.document.getElementsByTagName('script');
       scripts = Array.from(scripts);
       var sawTestHarness = false;
-      var concatenatedScripts = scripts.map(function(script) {
-        if (/\/resources\/testharness(report)?\.js$/.test(script.getAttribute('src')||'')) {
-          // We've already included the test harnesses.
-          sawTestHarness = true;
-          return '';
-        }
-        if (/\/webrtc\/RTCPeerConnection-helper.js$/.test(script.getAttribute('src')||'')) {
-          // Bad script: we don't support webrtc and furthermore it contains
-          // ES6 syntax which causes older versions of node to choke.
-          return '';
-        }
-        if (/^text\/plain$/.test(script.getAttribute('type')||'')) {
-          return '';
-        }
-        if (/^(\w+|..|\/)/.test(script.getAttribute('src')||'')) {
-          var f = script.getAttribute('src');
-          if (/^\//.test(f)) {
-            f = Path.resolve(__dirname, 'web-platform-tests' + f);
-          } else {
-            //console.log('??', {path:path, name:name, file:file});
-            f = Path.resolve(Path.dirname(file), f);
+      var concatenatedScripts = scripts
+        .map(function (script) {
+          if (/\/resources\/testharness(report)?\.js$/.test(script.getAttribute('src') || '')) {
+            // We've already included the test harnesses.
+            sawTestHarness = true;
+            return '';
           }
-          if (fs.existsSync(f)) {
-            return read(f);
-          } else {
-            // console.warn('SKIPPING SCRIPT', script.outerHTML);
+          if (/\/webrtc\/RTCPeerConnection-helper.js$/.test(script.getAttribute('src') || '')) {
+            // Bad script: we don't support webrtc and furthermore it contains
+            // ES6 syntax which causes older versions of node to choke.
+            return '';
           }
-        }
-        var textContent = script.textContent;
-        if (/\.xhtml$/.test(file)) {
-          // hacky way to expand entities
-          var txt = window.document.createElementNS('http://www.w3.org/1999/xhtml', 'textarea');
-          txt.innerHTML = textContent;
-          textContent = txt.textContent;
-        }
-        return textContent + '\n';
-      }).join("\n");
-      concatenatedScripts =
-        concatenatedScripts.replace(/\.attributes\[(\w+)\]/g,
-                                    '.attributes.item($1)');
+          if (/^text\/plain$/.test(script.getAttribute('type') || '')) {
+            return '';
+          }
+          if (/^(\w+|..|\/)/.test(script.getAttribute('src') || '')) {
+            var f = script.getAttribute('src');
+            if (/^\//.test(f)) {
+              f = Path.resolve(__dirname, 'web-platform-tests' + f);
+            } else {
+              //console.log('??', {path:path, name:name, file:file});
+              f = Path.resolve(Path.dirname(file), f);
+            }
+            if (fs.existsSync(f)) {
+              return read(f);
+            } else {
+              // console.warn('SKIPPING SCRIPT', script.outerHTML);
+            }
+          }
+          var textContent = script.textContent;
+          if (/\.xhtml$/.test(file)) {
+            // hacky way to expand entities
+            var txt = window.document.createElementNS('http://www.w3.org/1999/xhtml', 'textarea');
+            txt.innerHTML = textContent;
+            textContent = txt.textContent;
+          }
+          return textContent + '\n';
+        })
+        .join('\n');
+      concatenatedScripts = concatenatedScripts.replace(
+        /\.attributes\[(\w+)\]/g,
+        '.attributes.item($1)'
+      );
       // Some tests use [...foo] syntax for `Array.from(foo)`
-      concatenatedScripts =
-        concatenatedScripts.replace(/\[\.\.\.(\w+)\]/g,
-                                    'Array.from($1)');
+      concatenatedScripts = concatenatedScripts.replace(/\[\.\.\.(\w+)\]/g, 'Array.from($1)');
       // usvstring-reflection.html uses () => { ... } syntax (unnecessarily)
-      concatenatedScripts =
-        concatenatedScripts.replace(/(\b\w+|\(\w*\))\s*=>\s*\{/g, function(_,a){
-          if (a.slice(0,1)!=='(') { a = '(' + a + ')'; }
-          return 'function '+a+' {';
-        });
+      concatenatedScripts = concatenatedScripts.replace(
+        /(\b\w+|\(\w*\))\s*=>\s*\{/g,
+        function (_, a) {
+          if (a.slice(0, 1) !== '(') {
+            a = '(' + a + ')';
+          }
+          return 'function ' + a + ' {';
+        }
+      );
       // It also contains `([channel1, channel2]) => {` in a test case which is
       // bound to fail anyway (it exercises WebRTC)
-      concatenatedScripts =
-        concatenatedScripts.replace(
-            /\(\[channel1, channel2\]\) => \{/,
-            'function(channel1, channel2){' // not right, but not a syntax error
-        );
+      concatenatedScripts = concatenatedScripts.replace(
+        /\(\[channel1, channel2\]\) => \{/,
+        'function(channel1, channel2){' // not right, but not a syntax error
+      );
       // Workaround for https://github.com/w3c/web-platform-tests/pull/3984
       concatenatedScripts =
         '"use strict";\n' +
@@ -261,25 +280,28 @@ var harness = function() {
 
       var expectedFailures = onBlacklist(shortFile);
 
-      return function(done) {
-        var haveTests = false, isComplete = false, sawError = [];
+      return function (done) {
+        var haveTests = false,
+          isComplete = false,
+          sawError = [];
         var calledOnce = false;
-        var withResults = function(results) {
+        var withResults = function (results) {
           if (calledOnce) {
-            console.warn('DONE CALLED TWICE', name, (new Error()).stack);
+            console.warn('DONE CALLED TWICE', name, new Error().stack);
             return;
+          } else {
+            calledOnce = true;
           }
-          else { calledOnce = true; }
           if (!WRITE_BLACKLIST) {
-            var str = results.map(function(item) {
+            var str = results.map(function (item) {
               var s = item.name;
               if (item.message) s += ': ' + item.message;
-              if (item.status) s += ' ['+item.status+']';
+              if (item.status) s += ' [' + item.status + ']';
               return s;
             });
-            sawError.forEach(function(err) {
-              if (!(expectedFailures && expectedFailures.test('Uncaught: '+err.message))) {
-                str.push('Uncaught: '+err.message);
+            sawError.forEach(function (err) {
+              if (!(expectedFailures && expectedFailures.test('Uncaught: ' + err.message))) {
+                str.push('Uncaught: ' + err.message);
               }
             });
             if (sawError.length === 1 && str.length === 1) {
@@ -291,34 +313,42 @@ var harness = function() {
             var bl = {};
             try {
               bl = JSON.parse(fs.readFileSync(BLACKLIST_PATH, 'utf-8'));
-            } catch (e) { /* ignore */ }
-            bl[shortFile] = results.map(function(item) { return item.name; });
-            sawError.forEach(function(err) {
+            } catch (e) {
+              /* ignore */
+            }
+            bl[shortFile] = results.map(function (item) {
+              return item.name;
+            });
+            sawError.forEach(function (err) {
               bl[shortFile].push('Uncaught: ' + err.message);
             });
-            if (!bl[shortFile].length) { bl[shortFile] = undefined; }
-            fs.writeFileSync(
-              BLACKLIST_PATH, JSON.stringify(bl, null, 2), 'utf-8'
-            );
+            if (!bl[shortFile].length) {
+              bl[shortFile] = undefined;
+            }
+            fs.writeFileSync(BLACKLIST_PATH, JSON.stringify(bl, null, 2), 'utf-8');
             done();
           }
         };
-        window.add_start_callback(function() {
+        window.add_start_callback(function () {
           haveTests = true;
         });
-        window.add_completion_callback(function(tests, status) {
+        window.add_completion_callback(function (tests, status) {
           isComplete = true;
-          var failed = tests.filter(function(t) {
-            if (t.status === t.TIMEOUT) { return true; /* never ok */ }
-            var expectFail =
-                expectedFailures ? expectedFailures.test(t.name) : false;
-            var actualFail = (t.status === t.FAIL);
+          var failed = tests.filter(function (t) {
+            if (t.status === t.TIMEOUT) {
+              return true; /* never ok */
+            }
+            var expectFail = expectedFailures ? expectedFailures.test(t.name) : false;
+            var actualFail = t.status === t.FAIL;
             return expectFail !== actualFail;
           });
-          var report = failed.map(function(t) {
+          var report = failed.map(function (t) {
             var item = { name: t.name, message: t.message };
-            if (t.status===t.TIMEOUT) { item.status = 'TIMEOUT'; }
-            else if (t.status!==t.FAIL) { item.status = 'EXPECT FAIL'; }
+            if (t.status === t.TIMEOUT) {
+              item.status = 'TIMEOUT';
+            } else if (t.status !== t.FAIL) {
+              item.status = 'EXPECT FAIL';
+            }
             return item;
           });
           withResults(report);
@@ -333,15 +363,20 @@ var harness = function() {
         } catch (e) {
           sawError.push(e);
         }
-        if (!sawTestHarness) { withResults([]); }
-        else if (sawError.length && !haveTests) { withResults([]); }
+        if (!sawTestHarness) {
+          withResults([]);
+        } else if (sawError.length && !haveTests) {
+          withResults([]);
+        }
       };
     });
   });
   return harnessResult;
 };
 
-module.exports = harness(__dirname + '/web-platform-tests/html/dom',
-                         __dirname + '/web-platform-tests/dom/nodes',
-                         __dirname + '/web-platform-tests/dom/traversal',
-                         __dirname + '/web-platform-tests/domparsing');
+module.exports = harness(
+  __dirname + '/web-platform-tests/html/dom',
+  __dirname + '/web-platform-tests/dom/nodes',
+  __dirname + '/web-platform-tests/dom/traversal',
+  __dirname + '/web-platform-tests/domparsing'
+);

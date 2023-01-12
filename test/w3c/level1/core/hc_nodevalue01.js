@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_nodevalue01";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/core/hc_nodevalue01';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "hc_staff");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'hc_staff');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -83,32 +77,28 @@ should still return null.
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core#i-Document
 */
 function hc_nodevalue01() {
-   var success;
-    if(checkInitialization(builder, "hc_nodevalue01") != null) return;
-    var doc;
-      var newNode;
-      var newValue;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "hc_staff");
-      newNode = doc.createElement("acronym");
-      newValue = newNode.nodeValue;
+  var success;
+  if (checkInitialization(builder, 'hc_nodevalue01') != null) return;
+  var doc;
+  var newNode;
+  var newValue;
 
-      assertNull("initiallyNull",newValue);
-    newNode.nodeValue = "This should have no effect";
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'hc_staff');
+  newNode = doc.createElement('acronym');
+  newValue = newNode.nodeValue;
 
-      newValue = newNode.nodeValue;
+  assertNull('initiallyNull', newValue);
+  newNode.nodeValue = 'This should have no effect';
 
-      assertNull("nullAfterAttemptedChange",newValue);
-    
+  newValue = newNode.nodeValue;
+
+  assertNull('nullAfterAttemptedChange', newValue);
 }
 
-
-
-
 function runTest() {
-   hc_nodevalue01();
+  hc_nodevalue01();
 }

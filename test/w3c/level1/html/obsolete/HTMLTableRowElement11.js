@@ -1,4 +1,3 @@
-
 /*
 Copyright Â© 2001-2004 World Wide Web Consortium, 
 (Massachusetts Institute of Technology, European Research Consortium 
@@ -10,15 +9,13 @@ the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 [1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231
 */
 
-
-
-   /**
-    *  Gets URI that identifies the test.
-    *  @return uri identifier of test
-    */
+/**
+ *  Gets URI that identifies the test.
+ *  @return uri identifier of test
+ */
 function getTargetURI() {
-      return "http://www.w3.org/2001/DOM-Test-Suite/level1/html/HTMLTableRowElement11";
-   }
+  return 'http://www.w3.org/2001/DOM-Test-Suite/level1/html/HTMLTableRowElement11';
+}
 
 var docsLoaded = -1000000;
 var builder = null;
@@ -33,45 +30,42 @@ var builder = null;
 //        raised when entering the body of the test.
 //
 function setUpPage() {
-   setUpPageStatus = 'running';
-   try {
-     //
-     //   creates test document builder, may throw exception
-     //
-     builder = createConfiguredBuilder();
+  setUpPageStatus = 'running';
+  try {
+    //
+    //   creates test document builder, may throw exception
+    //
+    builder = createConfiguredBuilder();
 
-      docsLoaded = 0;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      docsLoaded += preload(docRef, "doc", "tablerow");
-        
-       if (docsLoaded == 1) {
-          setUpPageStatus = 'complete';
-       }
-    } catch(ex) {
-    	catchInitializationError(builder, ex);
-        setUpPageStatus = 'complete';
+    docsLoaded = 0;
+
+    var docRef = null;
+    if (typeof this.doc != 'undefined') {
+      docRef = this.doc;
     }
+    docsLoaded += preload(docRef, 'doc', 'tablerow');
+
+    if (docsLoaded == 1) {
+      setUpPageStatus = 'complete';
+    }
+  } catch (ex) {
+    catchInitializationError(builder, ex);
+    setUpPageStatus = 'complete';
+  }
 }
 
-
-
 //
-//   This method is called on the completion of 
+//   This method is called on the completion of
 //      each asychronous load started in setUpTests.
 //
 //   When every synchronous loaded document has completed,
 //      the page status is changed which allows the
 //      body of the test to be executed.
 function loadComplete() {
-    if (++docsLoaded == 1) {
-        setUpPageStatus = 'complete';
-    }
+  if (++docsLoaded == 1) {
+    setUpPageStatus = 'complete';
+  }
 }
-
 
 /**
 * 
@@ -91,54 +85,50 @@ function loadComplete() {
 * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68927016
 */
 function HTMLTableRowElement11() {
-   var success;
-    if(checkInitialization(builder, "HTMLTableRowElement11") != null) return;
-    var nodeList;
-      var cellsnodeList;
-      var testNode;
-      var trNode;
-      var cellNode;
-      var value;
-      var newCell;
-      var vcells;
-      var doc;
-      
-      var docRef = null;
-      if (typeof(this.doc) != 'undefined') {
-        docRef = this.doc;
-      }
-      doc = load(docRef, "doc", "tablerow");
-      nodeList = doc.getElementsByTagName("tr");
-      assertSize("Asize",5,nodeList);
-testNode = nodeList.item(3);
-      cellsnodeList = testNode.cells;
+  var success;
+  if (checkInitialization(builder, 'HTMLTableRowElement11') != null) return;
+  var nodeList;
+  var cellsnodeList;
+  var testNode;
+  var trNode;
+  var cellNode;
+  var value;
+  var newCell;
+  var vcells;
+  var doc;
 
-      vcells = cellsnodeList.length;
+  var docRef = null;
+  if (typeof this.doc != 'undefined') {
+    docRef = this.doc;
+  }
+  doc = load(docRef, 'doc', 'tablerow');
+  nodeList = doc.getElementsByTagName('tr');
+  assertSize('Asize', 5, nodeList);
+  testNode = nodeList.item(3);
+  cellsnodeList = testNode.cells;
 
-      assertEquals("cellsLink1",6,vcells);
-       trNode = cellsnodeList.item(0);
-      cellNode = trNode.firstChild;
+  vcells = cellsnodeList.length;
 
-      value = cellNode.nodeValue;
+  assertEquals('cellsLink1', 6, vcells);
+  trNode = cellsnodeList.item(0);
+  cellNode = trNode.firstChild;
 
-      assertEquals("value1Link","EMP0001",value);
-       newCell = testNode.insertCell(0);
-      testNode = nodeList.item(3);
-      cellsnodeList = testNode.cells;
+  value = cellNode.nodeValue;
 
-      vcells = cellsnodeList.length;
+  assertEquals('value1Link', 'EMP0001', value);
+  newCell = testNode.insertCell(0);
+  testNode = nodeList.item(3);
+  cellsnodeList = testNode.cells;
 
-      assertEquals("cellsLink2",7,vcells);
-       trNode = cellsnodeList.item(0);
-      cellNode = trNode.firstChild;
+  vcells = cellsnodeList.length;
 
-      assertNull("value2Link",cellNode);
-    
+  assertEquals('cellsLink2', 7, vcells);
+  trNode = cellsnodeList.item(0);
+  cellNode = trNode.firstChild;
+
+  assertNull('value2Link', cellNode);
 }
 
-
-
-
 function runTest() {
-   HTMLTableRowElement11();
+  HTMLTableRowElement11();
 }
